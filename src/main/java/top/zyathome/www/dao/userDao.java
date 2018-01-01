@@ -1,15 +1,17 @@
 package top.zyathome.www.dao;
 
+import top.zyathome.www.entity.userEntity;
+
 public interface userDao {
     int deleteByPrimaryKey(Integer userId);
 
-    int insert(top.zyathome.www.entity.userEntity record);
+    int insert(userEntity record);
 
-    int insertSelective(top.zyathome.www.entity.userEntity record);
+    int insertSelective(userEntity record);
 
-    top.zyathome.www.entity.userEntity selectByPrimaryKey(Integer userId);
+    userEntity selectByPrimaryKey(Integer userId);
 
-    int updateByPrimaryKeySelective(top.zyathome.www.entity.userEntity record);
+    int updateByPrimaryKeySelective(userEntity record);
 
-    int updateByPrimaryKey(top.zyathome.www.entity.userEntity record);
+    int updateByPrimaryKey(userEntity record);
 }
