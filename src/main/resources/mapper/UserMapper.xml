@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.zyathome.www.dao.userDao" >
+  <resultMap id="BaseResultMap" type="top.zyathome.www.entity.userEntity" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="todolist_id" property="todolistId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_role" property="userRole" jdbcType="TINYINT" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, todolist_id, user_name, user_role, user_pwd, user_phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.zyathome.www.entity.userEntity" >
+    insert into users (user_id, todolist_id, user_name, 
+      user_role, user_pwd, user_phone
+      )
+    values (#{userId,jdbcType=INTEGER}, #{todolistId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{userRole,jdbcType=TINYINT}, #{userPwd,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.zyathome.www.entity.userEntity" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="todolistId != null" >
+        todolist_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userRole != null" >
+        user_role,
+      </if>
+      <if test="userPwd != null" >
+        user_pwd,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="todolistId != null" >
+        #{todolistId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        #{userRole,jdbcType=TINYINT},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.zyathome.www.entity.userEntity" >
+    update users
+    <set >
+      <if test="todolistId != null" >
+        todolist_id = #{todolistId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        user_role = #{userRole,jdbcType=TINYINT},
+      </if>
+      <if test="userPwd != null" >
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.zyathome.www.entity.userEntity" >
+    update users
+    set todolist_id = #{todolistId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_role = #{userRole,jdbcType=TINYINT},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>
